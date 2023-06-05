@@ -86,7 +86,7 @@ namespace EdFi.Ods.Api.Security.Authentication
                 claimSetName: firstRow.ClaimSetName,
                 expiresUtc: firstRow.Expiration,
                 // Reconstitute raw rows into individual collections
-                educationOrganizationIds: GetEducationOrganizationIds().ToArray(),
+                educationOrganizationIds: GetEducationOrganizationIds().Select(a => (int)a).ToArray(),
                 namespacePrefixes: GetVendorNamespacePrefixes().ToArray(),
                 profiles: GetProfileNames().ToArray(),
                 ownershipTokenIds: GetOwnershipTokenIds().ToArray(),
@@ -95,7 +95,7 @@ namespace EdFi.Ods.Api.Security.Authentication
 
             return apiClientDetails;
 
-            IEnumerable<int> GetEducationOrganizationIds()
+            IEnumerable<long> GetEducationOrganizationIds()
             {
                 return apiClientRawDataRows
                     .Where(x => x.EducationOrganizationId.HasValue)

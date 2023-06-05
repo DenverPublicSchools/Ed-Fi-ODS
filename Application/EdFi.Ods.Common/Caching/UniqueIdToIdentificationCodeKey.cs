@@ -12,7 +12,7 @@ namespace EdFi.Ods.Common.Caching
         public string PersonType;
         public string IdentificationSystemDescriptorUri;
         public string UniqueId;
-        public int EducationOrganizationId;
+        public long EducationOrganizationId;
 
         // Resharper generated equality members
         public bool Equals(UniqueIdToIdentificationCodeKey other)

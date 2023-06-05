@@ -82,7 +82,7 @@ namespace EdFi.Ods.Api.Providers
             }
 
             var identity = _claimsIdentityProvider.GetClaimsIdentity(
-                apiClientDetails.EducationOrganizationIds,
+                apiClientDetails.EducationOrganizationIds.Select(a => (long)a),
                 apiClientDetails.ClaimSetName,
                 apiClientDetails.NamespacePrefixes,
                 apiClientDetails.Profiles,
@@ -101,7 +101,7 @@ namespace EdFi.Ods.Api.Providers
                         new ApiKeyContext(
                             apiClientDetails.ApiKey,
                             apiClientDetails.ClaimSetName,
-                            apiClientDetails.EducationOrganizationIds.ToArray(),
+                            apiClientDetails.EducationOrganizationIds.Select(a => (long)a).ToArray(),
                             apiClientDetails.NamespacePrefixes,
                             apiClientDetails.Profiles,
                             apiClientDetails.StudentIdentificationSystemDescriptor,

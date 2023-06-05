@@ -114,7 +114,7 @@ namespace EdFi.Ods.Tests.EdFi.Ods.Api.Security.Authorization.Repositories
                 };
 
                 var claimsIdentity = claimsIdentityProvider.GetClaimsIdentity(
-                    apiClientDetails.EducationOrganizationIds,
+                    apiClientDetails.EducationOrganizationIds.Select(a => (long)a).ToList(),
                     apiClientDetails.ClaimSetName,
                     apiClientDetails.NamespacePrefixes,
                     apiClientDetails.Profiles.ToList(), 

@@ -19,11 +19,11 @@ namespace EdFi.Admin.DataAccess.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ApplicationEducationOrganizationId { get; set; }
+        public long ApplicationEducationOrganizationId { get; set; }
 
         public Application Application { get; set; }
 
-        public int EducationOrganizationId { get; set; }
+        public long EducationOrganizationId { get; set; }
 
         public ICollection<ApiClient> Clients { get; set; }
     }

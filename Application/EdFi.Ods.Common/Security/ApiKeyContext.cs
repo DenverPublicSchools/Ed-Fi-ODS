@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EdFi.Ods.Common.Security
 {
@@ -24,7 +25,7 @@ namespace EdFi.Ods.Common.Security
         public ApiKeyContext(
             string apiKey,
             string claimSetName,
-            IList<int> educationOrganizationIds,
+            long[] educationOrganizationIds,
             IList<string> namespacePrefixes,
             IList<string> profiles,
             string studentIdentificationSystemDescriptor,
@@ -35,7 +36,7 @@ namespace EdFi.Ods.Common.Security
         {
             ApiKey = apiKey;
             ClaimSetName = claimSetName;
-            EducationOrganizationIds = educationOrganizationIds ?? Array.Empty<int>();
+            EducationOrganizationIds = educationOrganizationIds.Select(a => (long)a).ToArray() ?? Array.Empty<long>();
             NamespacePrefixes = namespacePrefixes;
             StudentIdentificationSystemDescriptor = studentIdentificationSystemDescriptor;
             Profiles = profiles ?? new List<string>();
@@ -55,7 +56,7 @@ namespace EdFi.Ods.Common.Security
 
         public string ClaimSetName { get; }
 
-        public IList<int> EducationOrganizationIds { get; }
+        public IList<long> EducationOrganizationIds { get; }
 
         public IList<string> NamespacePrefixes { get; }
 

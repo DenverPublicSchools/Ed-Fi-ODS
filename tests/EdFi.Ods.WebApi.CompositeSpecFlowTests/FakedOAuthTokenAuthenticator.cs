@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -20,19 +21,19 @@ namespace EdFi.Ods.WebApi.CompositeSpecFlowTests
     {
         private const string ClaimSetName = "Ed-Fi Sandbox";
         private readonly Lazy<ApiKeyContext> _apiKeyContext;
-        private readonly Lazy<int[]> _educationOrganizationIds;
+        private readonly Lazy<long[]> _educationOrganizationIds;
         private readonly Lazy<ClaimsIdentity> _identity;
         private readonly Lazy<List<string>> _namespacePrefixes;
 
         public FakedOAuthTokenAuthenticator(IClaimsIdentityProvider claimsIdentityProvider)
         {
             _namespacePrefixes = new Lazy<List<string>>(() => new List<string> {"uri://ed-fi.org"});
-            _educationOrganizationIds = new Lazy<int[]>(() => new[] {255901});
+            _educationOrganizationIds = new Lazy<long[]>(() => new[] {255901l});
 
             _identity = new Lazy<ClaimsIdentity>(
                 () => claimsIdentityProvider
                     .GetClaimsIdentity(
-                        _educationOrganizationIds.Value, ClaimSetName, _namespacePrefixes.Value, new List<string>(), new List<short>()));
+                        _educationOrganizationIds.Value.Select(a => (long)a).ToList(), ClaimSetName, _namespacePrefixes.Value, new List<string>(), new List<short>()));
 
             _apiKeyContext = new Lazy<ApiKeyContext>(
                 () => new ApiKeyContext(

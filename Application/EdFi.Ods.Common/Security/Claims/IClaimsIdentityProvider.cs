@@ -28,7 +28,7 @@ namespace EdFi.Ods.Common.Security.Claims
         /// <param name="assignedProfileNames">The list of API Profiles assigned to the caller.</param>
         /// <returns>The <see cref="ClaimsIdentity"/>.</returns>
         ClaimsIdentity GetClaimsIdentity(
-            IEnumerable<int> localEducationAgencyIds,
+            IEnumerable<long> localEducationAgencyIds,
             string claimSetName,
             IList<string> vendorNamespacePrefixes,
             IList<string> assignedProfileNames,
@@ -38,7 +38,7 @@ namespace EdFi.Ods.Common.Security.Claims
     /// <summary>
     /// Defines authentication types supported by the Ed-Fi solution.
     /// </summary>
-    public class EdFiAuthenticationTypes
+    public static class EdFiAuthenticationTypes
     {
         /// <summary>
         /// The authentication type associated with the Ed-Fi OAuth implementation (which is applied to the <see cref="ClaimsIdentity"/> when it's created).

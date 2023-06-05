@@ -96,7 +96,7 @@ namespace EdFi.Ods.Tests.EdFi.Security.Claims
                     .Single()
                     .ShouldBe(ExpectedAction);
 
-                actual.EducationOrganizationIds.ShouldBe(expectedLocalEducationAgencyIds);
+                actual.EducationOrganizationIds.ShouldBe(expectedLocalEducationAgencyIds.Select(a => (long)a).ToList());
             }
 
             [Test]
